@@ -26,8 +26,8 @@ Sistema web para gestão de leads com interface Kanban, desenvolvido com React, 
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/automatefly/leadsGestor.git
+cd leadsGestor
 ```
 
 2. Instale as dependências:
