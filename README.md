@@ -1,63 +1,102 @@
-# Sistema de Gestão de Leads
+# LeadsGestor
 
-Sistema web para gestão de leads com interface Kanban, desenvolvido com React, Firebase e Tailwind CSS.
+LeadsGestor é uma aplicação web projetada para gerenciamento de leads com interface em estilo Kanban, utilizando **React**, **Firebase** e **Tailwind CSS**. Este repositório contém o código-fonte e um script de setup automatizado para facilitar a instalação e configuração em qualquer servidor.
 
-## Funcionalidades
+## Recursos
 
-- Autenticação de usuários
-- Dashboard Kanban personalizado
-- Gestão de leads por organização
-- Drag and drop de cards
-- Sistema de notas por lead
-- Personalização de colunas
-- Interface responsiva
+- Gerenciamento visual de leads com Kanban.
+- Integração com Firebase para autenticação, banco de dados e armazenamento.
+- Configuração automatizada para domínio customizado com suporte a SSL.
 
-## Tecnologias
+## Requisitos do Sistema
 
-- React
-- TypeScript
-- Firebase (Auth e Firestore)
-- Tailwind CSS
-- Zustand
-- React Hook Form
-- Lucide Icons
+- Servidor Linux (Ubuntu recomendado).
+- Node.js e npm instalados.
+- Nginx para servir o aplicativo em produção.
+- Certbot para configuração de SSL (Let’s Encrypt).
 
-## Instalação
+## Configuração Automática com o Script de Setup
+
+Este repositório inclui um script de setup (`setup.sh`) que automatiza o processo de instalação e configuração.
+
+### Passos para Executar o Setup
+
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/automatefly/leadsGestor.git
+   cd leadsGestor
+   ```
+
+2. Torne o script de setup executável:
+   ```bash
+   chmod +x setup.sh
+   ```
+
+3. Execute o script:
+   ```bash
+   sudo ./setup.sh
+   ```
+
+4. Insira as informações solicitadas:
+   - **Domínio**: O domínio onde deseja hospedar o aplicativo (ex: `example.com`).
+   - **E-mail**: Endereço de e-mail para o Certbot (para notificações sobre SSL).
+   - **Credenciais do Firebase**: Inclua as chaves de configuração do Firebase (API Key, Auth Domain, Project ID, etc.).
+
+### O que o Script Faz
+
+1. Limpa o servidor, removendo quaisquer configurações, certificados SSL ou repositórios antigos que possam causar conflitos.
+2. Instala todas as dependências necessárias: Git, Node.js, npm, Nginx, Certbot, entre outras.
+3. Clona o repositório na pasta `/var/www/leadsGestor`.
+4. Configura as credenciais do Firebase em um arquivo `.env`.
+5. Instala as dependências do projeto com `npm install`.
+6. Gera o build da aplicação com `npm run build`.
+7. Configura o Nginx para servir o aplicativo no domínio especificado.
+8. Configura e ativa o SSL para o domínio usando o Certbot.
+
+## Configuração Manual
+
+Se preferir configurar manualmente, siga os passos abaixo:
 
 1. Clone o repositório:
-```bash
-git clone https://github.com/automatefly/leadsGestor.git
-cd leadsGestor
-```
+   ```bash
+   git clone https://github.com/automatefly/leadsGestor.git
+   cd leadsGestor
+   ```
 
-2. Instale as dependências:
-```bash
-npm install
-```
+2. Instale as dependências do projeto:
+   ```bash
+   npm install
+   ```
 
-3. Configure as variáveis de ambiente:
-Crie um arquivo `.env` na raiz do projeto com suas credenciais do Firebase.
+3. Crie um arquivo `.env` na raiz do projeto com as credenciais do Firebase:
+   ```env
+   VITE_API_KEY="<sua-api-key>"
+   VITE_AUTH_DOMAIN="<seu-auth-domain>"
+   VITE_PROJECT_ID="<seu-project-id>"
+   VITE_STORAGE_BUCKET="<seu-storage-bucket>"
+   VITE_MESSAGING_SENDER_ID="<seu-messaging-sender-id>"
+   VITE_APP_ID="<seu-app-id>"
+   ```
 
-4. Inicie o servidor de desenvolvimento:
-```bash
-npm run dev
-```
+4. Gere o build do projeto:
+   ```bash
+   npm run build
+   ```
 
-## Deploy
+5. Configure o Nginx para servir o diretório `dist` gerado.
 
-Para fazer deploy em produção:
+6. Configure o SSL com o Certbot.
 
-1. Build do projeto:
-```bash
-npm run build
-```
+## Notas Importantes
 
-2. Use os scripts na pasta `setup/` para configurar o servidor:
-```bash
-./setup/install.sh
-./setup/deploy.sh
-```
+- Certifique-se de que o domínio fornecido no script esteja apontando para o IP do servidor antes de rodar o setup.
+- O script é projetado para facilitar a instalação em ambientes limpos; se já houver configurações no servidor, elas podem ser sobrescritas.
+
+## Suporte
+
+Se encontrar algum problema ou tiver dúvidas, abra uma issue neste repositório ou entre em contato com o suporte.
 
 ## Licença
 
-MIT
+Este projeto está licenciado sob a Licença MIT. Consulte o arquivo LICENSE para mais informações.
+
